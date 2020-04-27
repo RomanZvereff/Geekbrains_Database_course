@@ -103,10 +103,9 @@ insert into products values
 (null, 'product_9', 'description_9', 800.99, 2, now(), now()),
 (null, 'product_10', 'description_10', 8300.99, 1, now(), now());
 
-create view prod_name as select `name` from products order by id;
+create view prod_name_catalog_name as select t1.`name` as prod_name,
+											 t2.`name` as `catalog_name`
+											from products as t1 
+											join catalogs as t2 on t1.catalog_id = t2.id;
 
-select * from prod_name;
-
-create view `catalog_name` as select `name` from catalogs order by id;
-
-select * from `catalog_name`;
+select * from prod_name_catalog_name;
